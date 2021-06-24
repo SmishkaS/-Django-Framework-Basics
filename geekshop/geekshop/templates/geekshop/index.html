@@ -1,0 +1,46 @@
+{% extends 'geekshop/base.html' %} <!--Тэг объявляет шаблон, заданный в качестве аргумента в качестве родителя текущего шаблона.-->
+{% load static %} <!--Тэг подгружает статику записанную в settings.py STATIC_URL = '/static/'-->
+{% block title %}{{title|title}}{% endblock %}
+
+{% block content %}
+		<div class="slider">
+			<div class="text-slider">
+				<h3 class="green">тенденции {% now "Y" %}</h3> <!--Тэг выводит текущий год-->
+				<h3 class="big"> удобные стулья</h3>
+				<p>Новый уровень комфорта. Отличные характеристики.</p>
+				<a href="#" class="button-order">заказать <img src="{% static 'geekshop/img/arrow.png' %}" alt=""></a> <!--Динамическая ссылка на картинку-->
+			</div>
+			<div class="navi">
+				<a href="#"></a><a href="#"></a><a href="#"></a>
+			</div>
+		</div>
+
+		<div class="featured">
+			<div class="featured-menu">
+					<a class="active" href="#">Популярные</a><a href="#">Новинки</a>
+			</div>
+			<a class="explore" href="#">показать все <img src="{% static 'geekshop/img/arrow.png' %}" alt=""></a> <!--Динамическая ссылка на картинку-->
+			<div class="clearfix">
+			</div>
+			<div class="tab-content">
+				<div class="block">
+					<a href="#"><img src="{% static 'geekshop/img/product-1.jpg' %}" alt=""> <!--Динамическая ссылка на картинку-->
+						<div class="text">
+							<img src="{% static 'geekshop/img/icon-hover.png' %}" alt="img"> <!--Динамическая ссылка на картинку-->
+							<h4>Отличный стул</h4>
+							<p>Расположитесь комфортно. </p>
+						</div>
+					</a>
+				</div>
+				<div class="block">
+					<a href="#"><img src="{% static 'geekshop/img/product-2.jpg' %}" alt=""> <!--Динамическая ссылка на картинку-->
+						<div class="text">
+							<img src="{% static 'geekshop/img/icon-hover.png' %}" alt=""> <!--Динамическая ссылка на картинку-->
+							<h4>Стул повышенного качества</h4>
+							<p>Не оторваться. </p>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+{% endblock %}

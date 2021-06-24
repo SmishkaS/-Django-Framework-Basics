@@ -1,0 +1,92 @@
+{% extends 'geekshop/base.html' %} <!--Тэг объявляет шаблон, заданный в качестве аргумента в качестве родителя текущего шаблона.-->
+{% load static %} <!--Тэг подгружает статику записанную в settings.py STATIC_URL = '/static/'-->
+
+{% block css %} <!--Концепция наследования шаблонов (css), позволяет построить базовый “скелет” шаблона, содержащий все общие элементы вашего сайта и определяющий блоки, которые дочерние шаблоны могут переопределять.-->
+	<link rel="stylesheet" type="text/css" href="{% static 'mainapp/style.css' %}"> <!--Динамическая ссылка на статический файл style.css-->
+{% endblock %}
+
+{% block content %}
+
+		<div class="details">
+			{% include 'mainapp/includes/inc_category_menu.html' %} <!--Тэг позволяет вставить шаблон (inc_category_menu.html) в текущий шаблон-->
+
+			<div class="details-products">
+				<div class="details-slider">
+					<div class="slider-product">
+						<img src="{% static 'geekshop/img/slider1.jpg' %}"> <!--Динамическая ссылка на картинку-->
+					</div>
+					<div class="slider-control">
+						<div class="block">
+							<a href="#"><img src="{% static 'geekshop/img/controll.jpg' %}" alt=""> <!--Динамическая ссылка на картинку-->
+								<div class="text"></div>
+							</a>
+						</div>
+						<div class="block">
+							<a href="#"><img src="{% static 'geekshop/img/controll1.jpg' %}" alt=""> <!--Динамическая ссылка на картинку-->
+								<div class="text"></div>
+							</a>
+						</div>
+						<div class="block">
+							<a href="#"><img src="{% static 'geekshop/img/controll2.jpg' %}" alt=""> <!--Динамическая ссылка на картинку-->
+								<div class="text"></div>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="description">
+					<h3 class="big-bold">Отличный стул</h3>
+					<h3 class="red">горячее предложение</h3>
+					<p class="price"> 2585.9 <span>руб</span></p>
+					<a href="#" class="red-button">
+						заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
+					</a>
+					<div class="description-text">
+						<p>Расположитесь комфортно.</p> 
+						<p>Отличное качество материалов
+						позволит вам это.</p> 
+						<p>Различные цвета</p>
+						<p>высочайший уровень
+						эргономики и прочность.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="related">
+				<div class="title clearfix">
+					<h2>Похожие продукты</h2>
+					<a class="explore" href="#">показать все <img src="{% static 'geekshop/img/arrow.png' %}" alt=""></a> <!--Динамическая ссылка на картинку-->
+				</div>
+				<div class="related-products clearfix">
+					<div class="block">
+						<a href="#"><img src="{% static 'geekshop/img/product-11.jpg' %}" alt=""> <!--Динамическая ссылка на картинку-->
+							<div class="text">
+								<img src="{% static 'geekshop/img/icon-hover.png' %}" alt="img"> <!--Динамическая ссылка на картинку-->
+								<h4>Стул повышенного качества</h4>
+								<p>Не оторваться. </p>
+							</div>
+						</a>
+					</div>
+					<div class="block">
+						<a href="#"><img src="{% static 'geekshop/img/product-21.jpg' %}" alt=""> <!--Динамическая ссылка на картинку-->
+							<div class="text">
+								<img src="{% static 'geekshop/img/icon-hover.png' %}" alt="img"> <!--Динамическая ссылка на картинку-->
+								<h4>Стул повышенного качества</h4>
+								<p>Не оторваться. </p>
+							</div>
+						</a>
+					</div>
+					<div class="block">
+						<a href="#"><img src="{% static 'geekshop/img/product-31.jpg' %}" alt=""> <!--Динамическая ссылка на картинку-->
+							<div class="text">
+								<img src="{% static 'geekshop/img/icon-hover.png' %}" alt="img"> <!--Динамическая ссылка на картинку-->
+								<h4>Стул повышенного качества</h4>
+								<p>Не оторваться. </p>
+							</div>
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+{% endblock %}
