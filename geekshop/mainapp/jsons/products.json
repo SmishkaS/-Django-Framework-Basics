@@ -1,0 +1,182 @@
+[
+  {
+      "category": "Дом",
+      "name": "Кресла",
+      "image": "product_images/product-2.jpg",
+      "short_desc": "Бабкина радость",
+      "description": "Матерчатые синие кресла",
+      "price": "5600.00",
+      "quantity": 4
+  },
+  {
+      "category": "Дом",
+      "name": "Диван",
+      "image": "product_images/product-3-sm.jpg",
+      "short_desc": "Гене на потеху",
+      "description": "Матерчатый серый диван",
+      "price": "8900.00",
+      "quantity": 1
+  },
+  {
+      "category": "Дом",
+      "name": "Стул",
+      "image": "product_images/product-4.jpg",
+      "short_desc": "Анотомический стул для круглозадых",
+      "description": "Красный стул",
+      "price": "4200.00",
+      "quantity": 15
+  },
+  {
+      "category": "Дом",
+      "name": "Стул",
+      "image": "product_images/product-21.jpg",
+      "short_desc": "Анотомический стул для квадрозадых",
+      "description": "Белый стул",
+      "price": "2000.00",
+      "quantity": 10
+  },
+  {
+      "category": "Дом",
+      "name": "Подушка",
+      "image": "product_images/product-1-lg.jpg",
+      "short_desc": "Плохой сон",
+      "description": "Красная подушка из треугольных пластин",
+      "price": "1700.00",
+      "quantity": 17
+  },
+  {
+      "category": "Классика",
+      "name": "Лампа",
+      "image": "product_images/product-1.jpg",
+      "short_desc": "Нежный ламповый свет",
+      "description": "Лампа сферическая белая",
+      "price": "4500.00",
+      "quantity": 23
+  },
+  {
+      "category": "Классика",
+      "name": "Часы",
+      "image": "product_images/product-4-sm.jpg",
+      "short_desc": "Неандертальское счастье",
+      "description": "Часы каменные",
+      "price": "500.00",
+      "quantity": 210
+  },
+  {
+      "category": "Классика",
+      "name": "Люстра",
+      "image": "product_images/product-5-sm.jpg",
+      "short_desc": "Слепой фью",
+      "description": "Люстра черная подвисная",
+      "price": "3500.00",
+      "quantity": 19
+  },
+  {
+      "category": "Классика",
+      "name": "Лампа",
+      "image": "product_images/product-31.jpg",
+      "short_desc": "Черная пантера",
+      "description": "Прикроватная черная лампа",
+      "price": "3900.00",
+      "quantity": 8
+  },
+  {
+      "category": "Классика",
+      "name": "Светильник",
+      "image": "product_images/product-41.jpg",
+      "short_desc": "Конус ",
+      "description": "Настенный черный светильник",
+      "price": "3900.00",
+      "quantity": 30
+  },
+  {
+      "category": "Модерн",
+      "name": "Светильник",
+      "image": "product_images/product-2-sm.jpg",
+      "short_desc": "Настенный панкратион",
+      "description": "Черный настенный светильник 8-ми угольной формы",
+      "price": "4300.00",
+      "quantity": 20
+  },
+  {
+      "category": "Модерн",
+      "name": "Кофейник",
+      "image": "product_images/product-3.jpg",
+      "short_desc": "Белый кофе",
+      "description": "Декоративный белый Кофейник",
+      "price": "5800.00",
+      "quantity": 26
+  },
+  {
+      "category": "Модерн",
+      "name": "Лампа",
+      "image": "product_images/product-11.jpg",
+      "short_desc": "Небесная волна",
+      "description": "Дизайнерская подвисная лампа",
+      "price": "7200.00",
+      "quantity": 33
+  },
+  {
+      "category": "Модерн",
+      "name": "Чаша",
+      "image": "product_images/product-51.jpg",
+      "short_desc": "Поющий ветер",
+      "description": "Ударная черная чаша",
+      "price": "1300.00",
+      "quantity": 13
+  },
+  {
+      "category": "Модерн",
+      "name": "Ваза",
+      "image": "product_images/product-61.jpg",
+      "short_desc": "Прикроватный писуар",
+      "description": "Белая ваза",
+      "price": "11900.00",
+      "quantity": 16
+  },
+  {
+      "category": "Офис",
+      "name": "Стол",
+      "image": "product_images/slider-hotdeal.jpg",
+      "short_desc": "Плакучая ива ",
+      "description": "Белый стол",
+      "price": "6100.00",
+      "quantity": 23
+  },
+  {
+      "category": "Офис",
+      "name": "Кресло",
+      "image": "product_images/promo-img2.jpg",
+      "short_desc": "Босс дизайна",
+      "description": "Черное кожанное кресло с дубовой окантовкой",
+      "price": "14500.00",
+      "quantity": 20
+  },
+  {
+      "category": "Офис",
+      "name": "Стул",
+      "image": "product_images/controll.jpg",
+      "short_desc": "Офисный нищеброд",
+      "description": "Голубой стул",
+      "price": "3300.00",
+      "quantity": 11
+  },
+  {
+      "category": "Офис",
+      "name": "Стул",
+      "image": "product_images/controll1.jpg",
+      "short_desc": "Офисный нищеброд",
+      "description": "Синий стул",
+      "price": "3300.00",
+      "quantity": 11
+  },
+  {
+      "category": "Офис",
+      "name": "Стул",
+      "image": "product_images/controll2.jpg",
+      "short_desc": "Офисный нищеброд",
+      "description": "Красный стул",
+      "price": "3300.00",
+      "quantity": 11
+  }
+]

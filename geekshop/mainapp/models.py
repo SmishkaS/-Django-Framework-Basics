@@ -1,6 +1,8 @@
 from django.db import models
 
+
 class ProductCategory(models.Model):
+    objects = None
     name = models.CharField(
         verbose_name='имя',
         max_length=64,
@@ -26,10 +28,11 @@ class ProductCategory(models.Model):
 
 
 class Product(models.Model):
+    objects = None
     category = models.ForeignKey(
         ProductCategory,
         verbose_name='категория',
-        on_delete=models.CASCADE,)
+        on_delete=models.CASCADE, )
     name = models.CharField(
         verbose_name='имя продукта',
         max_length=128,
