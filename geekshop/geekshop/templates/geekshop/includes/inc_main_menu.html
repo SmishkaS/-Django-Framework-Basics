@@ -1,9 +1,9 @@
 <div class="header clearfix">
-    <a href="{% url 'index' %}" class="logo"></a> <!--Динамические url-ссылки (в urls.py дописываем name)-->
+    <a href="{% url 'index' %}" class="logo"></a>
     <ul class="menu">
-        <li><a href="{% url 'index' %}" class="active">домой</a></li> <!--Динамические url-ссылки (в urls.py дописываем name)-->
-        <li><a href="{% url 'products:index' %}">продукты</a></li> <!--Динамические url-ссылки (в urls.py дописываем name)-->
-        <li><a href="{% url 'contacts' %}">контакты</a></li> <!--Динамические url-ссылки (в urls.py дописываем name)-->
+        <li><a href="{% url 'index' %}" class="active">домой</a></li>
+        <li><a href="{% url 'products:index' %}">продукты</a></li>
+        <li><a href="{% url 'contacts' %}">контакты</a></li>
         {% if user.is_authenticated %}
             <li>
                 <a href="{% url 'auth:edit' %}">
@@ -18,6 +18,12 @@
                   <a href="{% url 'auth:login' %}">войти</a>
                 {% endif %}
             </li>
+
     </ul>
     <a href="#" class="search"></a>
+    <a href="{% url 'basket:view' %}" class="basket">
+        <span>
+            {% if basket %} {{ basket|length }} {% endif %}
+        </span>
+    </a>
 </div>
