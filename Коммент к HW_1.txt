@@ -1,0 +1,140 @@
+Практическое задание 
+1. Подготовить исходники для проекта — три страницы из верстки магазина. Разместить их в одной папке. 
+Мы рекомендуем сразу использовать свою вёрстку, а не магазин мебели из курса HTML. 
+Так ваш проект не будет 1001 клоном и ваше портфолио будет отличаться от сотни других. 
+2. Установить Django и PyCharm. Создать проект и в нем — приложение mainapp. Проверить, что все работает.
+3. Разместить шаблоны и статические файлы в соответствующих папках. Настроить проект — файл settings.py.
+Отредактировать файл диспетчера url-адресов urls.py. 
+4. Написать функции-обработчики для всех страниц — файл views.py в приложении mainapp. 
+Проверить работу всех страниц проекта в черновом режиме (без стилей и изображений).
+5. Откорректировать пути к статическим файлам и адреса гиперссылок в меню. Проверить, что все работает верно: 
+стили и изображения грузятся, гиперссылки работают.
+6. Сделать файл run.bat для быстрого запуска django-сервера.
+
+
+
+Открыл PyCharm
+Ранее уже создавал виртуальное окружение (venv)
+В терминале PyCharm:
+
+Установил django: pip install django
+Проверил установку: python -m django --version (out: 3.2.4)
+
+Создаем новый django проект: django-admin.exe startproject geekshop
+Переходим в эту папку: cd geekshop 
+Смотрим что в ней все установилось: dir 
+//создалась только папка с одноименным названием geekshop (в которой имеется различные модули) 
+//и отдельно специальный модуль manage.py чуть позже появился модуль db.sqlite3
+
+"""
+geekshop/ — папка с важными для проекта файлами.
+__init__.py — файл необходим для того, чтобы Python рассматривал данный каталог как пакет, то есть как группу модулей. 
+settings.py — настройки проекта Django.
+url.py — диспетчер url-адресов проекта.
+wsgi.py — файл, который потребуется для развертывания на боевом сервере.
+manage.py — утилита командной строки, которая позволяет взаимодействовать с проектом различными методами. Наберите python manage.py help 
+db.sqlite3 — файл с БД проекта, который Django создает по умолчанию
+"""
+
+Создаем главное приложение: python manage.py startapp mainapp
+//Создалась папка с одноименным названием mainapp (в которой имеется различные модули) и внутри отдельно папка migration
+
+"""
+mainapp/ — папка с приложением mainapp.
+migration/ — папка, где будут создаваться миграции при работе с БД.
+admin.py — файл для работы встроенной в Django админки.
+apps.py — вспомогательный файл Django, никогда не будем менять его содержимое.
+models.py — файл, где описываются модели django-приложения.
+tests.py — файл с тестами приложения.
+views.py — файл с контроллерами приложения, выполняющими его основную логику.
+"""
+
+Регистрируем наше приложение в settings.py, открываем файл и в абзац INSTALLED_APPS (УСТАНОВЛЕННЫЕ ПРИЛОЖЕНИЯ) дописываем 'mainapp',
+Также в конец файла в абзац STATIC_URL = '/static/' дописываем:
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+— это позволит организовать раздачу статических файлов (папки CSS, JS, IMG, FONTS) силами сервера Django.
+//PyCharm ругается на os. (добавил import os)
+Сами статические файлы разместим в папке static в корне проекта, которая будет иметь следующую структуру:
+static/
+    css/
+    fonts/
+    img/
+    js/
+
+На данный момент у нас нет ни каких миграций в папке migration исправим это: python manage.py migrate
+//Создались необходимые таблицы нашей БД
+
+Создадим суперюзера (admin): python manage.py createsuperuser
+Username (leave blank to use 'predator'): admin
+Email address: 7822733@mail.ru
+Password: 123
+
+Запускаем сервер: python manage.py runserver
+"""
+System check identified no issues (0 silenced).
+June 17, 2021 - 10:16:23
+Django version 3.2.4, using settings 'geekshop.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+"""
+
+Заходим в браузер по URL http://127.0.0.1:8000/
+""" 
+Видим
+The install worked successfully! Congratulations!
+You are seeing this page because DEBUG=True is in your settings file and you have not configured any URLs.
+(Установка прошла успешно! Поздравляю!
+Вы видите эту страницу, потому что DEBUG = True находится в вашем файле настроек, а вы не настроили никаких URL-адресов.)
+Джанго готов писать какую-то полноценную бизнес логику.
+"""
+
+В корне проекта создадим текстовый файл с названием run и прописываем в него:
+python manage.py runserver
+pause
+Сохраняем выходи и меняем расширение с .txt на .bat
+// У файла появился значек с шестеренкой. С его помощью можно быстро запускать сервер Django двойным кликом мыши.
+
+
+Проектируем модель URL для своего приложения используются шаблоны путей, которые прописаны в файле urls.py дописываем:
+path('', mainapp.main),
+path('products/', mainapp.products),
+path('contact/', mainapp.contact),
+//PyCharm ругается на mainapp. (добавил import mainapp.views as mainapp)
+"""
+Это записи соответствия шаблонов url-адресов и функций-обработчиков из файла mainapp.views при помощи функции path().
+За счет такого подхода получаем логику типа: «пользователь запросил такой url-адрес — обработаем его соответствующей функцией из mainapp.views.py».
+"""
+
+Прописываем контроллеры в файле views.py (папка приложения mainapp):
+def main(request):
+    return render(request, 'mainapp/index.html')
+def products(request):
+    return render(request, 'mainapp/products.html')
+def contact(request):
+    return render(request, 'mainapp/contact.html')
+
+Пробуем прописать в браузер адрес 127.0.0.1:8000/products/ 
+//Все отлично работает !!!
+
+Открываем наш файл index.html в папке (geekshop\mainapp\templates\mainapp)
+В шапке (<head>) подисываем путь к стилям /static/css/ и шрифтам /static/ должно получится:
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/fonts/font-awesome/css/font-awesome.css">
+Для всех изображения (в том числе и в файле стилей css!) дописываем в пути /static/ пример:
+<img src="/static/img/arrow.png" alt="arrow">
+Ссылки в меню корректируем с учетом указанных путей: //У нас они такие и есть.
+<ul class="menu">
+    <li><a href="/" class="active">домой</a></li>
+    <li><a href="/products/">продукты</a></li>
+    <li><a href="/contact/">контакты</a></li>
+</ul>
+Все тоже самое делаем для contact.html и products.html
+Проверяем в браузере:
+http://127.0.0.1:8000/contact/
+http://127.0.0.1:8000/products/
+http://127.0.0.1:8000/
+Все работает. 
+
+Кто молодец? Я молодец!!! 
