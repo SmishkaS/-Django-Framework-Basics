@@ -2,25 +2,15 @@ from django.db import models
 
 
 class ProductCategory(models.Model):
-    objects = None
-    name = models.CharField(
-        verbose_name='имя',
-        max_length=64,
-        unique=True,
-    )
-    description = models.TextField(
-        verbose_name='описание',
-        blank=True,
-    )
-    created = models.DateTimeField(
-        auto_now_add=True,
-    )
-    updated = models.DateTimeField(
-        auto_now=True,
-    )
+    name = models.CharField(verbose_name='имя', max_length=64, unique=True)
+    description = models.TextField(verbose_name='описание', blank=True)
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name or f'Categoty with id - {self.pk}'
+        return self.name or f"Category with id - {self.pk}"
 
     class Meta:
         verbose_name = 'категория'
@@ -28,19 +18,19 @@ class ProductCategory(models.Model):
 
 
 class Product(models.Model):
-    objects = None
     category = models.ForeignKey(
         ProductCategory,
+        on_delete=models.CASCADE,
         verbose_name='категория',
-        on_delete=models.CASCADE, )
+    )
     name = models.CharField(
         verbose_name='имя продукта',
         max_length=128,
     )
     image = models.ImageField(
-        verbose_name='изображение',
         upload_to='product_images',
         blank=True,
+        verbose_name='изображение',
     )
     short_desc = models.CharField(
         verbose_name='краткое описание',
@@ -58,9 +48,10 @@ class Product(models.Model):
         default=0,
     )
     quantity = models.PositiveIntegerField(
-        verbose_name='колличество товара на складе',
-        default=0
+        verbose_name='количество товара на складе',
+        default=0,
     )
+
     created = models.DateTimeField(
         auto_now_add=True,
     )
@@ -68,8 +59,10 @@ class Product(models.Model):
         auto_now=True,
     )
 
+    is_deleted = models.BooleanField(default=False)
+
     def __str__(self):
-        return self.name or f'Product with id - {self.pk}'
+        return self.name or f"Product with id - {self.pk}"
 
     class Meta:
         verbose_name = 'продукт'
