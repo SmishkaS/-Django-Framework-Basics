@@ -10,7 +10,7 @@ from django.views.generic import DetailView
 
 class BasketDatailView(LoginRequiredMixin, DetailView):
     model = Basket
-    template_name = 'basketapp/basket.html'
+    template_name = 'basketapp/order_list.html'
 
     def __init__(self, **kwargs):
         super().__init__(kwargs)
@@ -33,8 +33,8 @@ class BasketDatailView(LoginRequiredMixin, DetailView):
 #             'basket': basket
 #         }
 #
-#         return render(request, 'basketapp/basket.html', context)
-#     return render(request, 'basketapp/basket.html')
+#         return render(request, 'basketapp/order_list.html', context)
+#     return render(request, 'basketapp/order_list.html')
 
 @login_required
 def basket_add(request, pk):
