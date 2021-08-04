@@ -8,33 +8,34 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView
 
 
-class BasketDatailView(LoginRequiredMixin, DetailView):
-    model = Basket
-    template_name = 'basketapp/order_list.html'
-
-    def __init__(self, **kwargs):
-        super().__init__(kwargs)
-        self.object = Basket.objects.filter(user=self.request.user)
-
-    def get_object(self, queryset=None):
-        return self.object
-
-    def get_context_data(self, **kwargs):
-        context = super(BasketDatailView, self).get_context_data()
-        context['basket'] = self.object
-        return context
-
-
-# @login_required
-# def basket(request):
-#     if request.user.is_authenticated:
-#         basket = Basket.objects.filter(user=request.user)
-#         context = {
-#             'basket': basket
-#         }
+# class BasketDatailView(LoginRequiredMixin, DetailView):
+#     model = Basket
+#     template_name = 'basketapp/order_list.html'
 #
-#         return render(request, 'basketapp/order_list.html', context)
-#     return render(request, 'basketapp/order_list.html')
+#     def __init__(self, **kwargs):
+#         super().__init__(kwargs)
+#         self.object = Basket.objects.filter(user=self.request.user)
+#
+#     def get_object(self, queryset=None):
+#         return self.object
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(BasketDatailView, self).get_context_data()
+#         context['basket'] = self.object
+#         return context
+
+
+@login_required
+def basket(request):
+    if request.user.is_authenticated:
+        basket = Basket.objects.filter(user=request.user).order_by('product__category')
+        context = {
+            'basket': basket
+        }
+        return render(request, 'basketapp/basket.html', context)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 
 @login_required
 def basket_add(request, pk):

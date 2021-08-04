@@ -7,7 +7,8 @@ from authapp.models import ShopUser
 from django.shortcuts import get_object_or_404, render
 from mainapp.models import Product, ProductCategory
 from django.contrib.auth.decorators import user_passes_test
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic.list import ListView
+from django.views.generic import CreateView, UpdateView, DeleteView
 
 
 class UsersListView(LoginRequiredMixin, ListView):
@@ -336,9 +337,12 @@ class ProductReadListView(LoginRequiredMixin, ListView):
     model = Product
     template_name = 'adminapp/product_read.html'
 
+    def __init__(self, **kwargs):
+        super().__init__(kwargs)
+        self.product = get_object_or_404(self.model, pk=self.kwargs.get('pk'))
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductReadListView, self).get_context_data()
-        self.product = get_object_or_404(self.model, pk=self.kwargs.get('pk'))
         context['product'] = self.product
         context['category'] = get_object_or_404(ProductCategory, pk=self.product.category.pk)
         return context
@@ -405,6 +409,10 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     template_name = 'adminapp/product_delete.html'
 
+    def __init__(self, **kwargs):
+        super().__init__(kwargs)
+        self.object = self.get_object()
+
     def get_success_url(self):
         return reverse('admin_staff:products', args=[self.object.category.pk])
 
@@ -414,7 +422,6 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
         return context
 
     def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()
         self.object.is_deleted = True
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
